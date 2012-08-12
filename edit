@@ -1,0 +1,2 @@
+#!/bin/sh -xe
+vim lib/sist.rb spec/sist_spec.rb -o
