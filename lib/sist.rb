@@ -1,11 +1,12 @@
 class Sist
   def self.sanitize input
-    input.gsub! /(passw?(or)?d?\s?[=:]\s?)\S+/i do
-      "#$1 hiddenpass"
+    result = input.dup
+    result.gsub! /(passw?(or)?d?\s?[=:]\s?)\S+/i do
+      "#$1hiddenpass"
     end
-    input.gsub! /((?:[ul]\/?n?)[:=])\s?\S+\s?((?:p\/?w?)[:=])\s?\S+/i do
-      "#$1 hiddenuser #$2 hiddenpass"
+    result.gsub! /((?:[ul]\/?n?)[:=])\s?\S+\s?((?:p\/?w?)[:=])\s?\S+/i do
+      "#$1hiddenuser #$2hiddenpass"
     end
-    input
+    result
   end
 end

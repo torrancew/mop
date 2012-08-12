@@ -17,7 +17,30 @@ a file.
 Currently Works With
 --------------------
 
-Nothing.
+<!--
+Update by having sharpsaw/perl-dots then yy@" on the next line:
+jjV}k!./mkdoc
+-->
+- Passwords
+    - `password: secr3t` ⇒ `password: hiddenpass`
+    - `password: 'secr3t'` ⇒ `password: hiddenpass`
+    - `password:secr3t` ⇒ `password:hiddenpass`
+    - `passwd:secr3t` ⇒ `passwd:hiddenpass`
+    - `passwd: secr3t` ⇒ `passwd: hiddenpass`
+    - `password=secr3t` ⇒ `password=hiddenpass`
+    - `passwd=secr3t` ⇒ `passwd=hiddenpass`
+    - `password="secr3t"` ⇒ `password=hiddenpass`
+    - `buzbuz password: secr3t bizbiz` ⇒ `buzbuz password: hiddenpass bizbiz`
+    - `buzbuz password: secr3t bizbiz another password: secr3t bazbaz` ⇒ `buzbuz password: hiddenpass bizbiz another password: hiddenpass bazbaz`
+    - `password=secr3t` ⇒ `password=hiddenpass`
+    - `passwd=secr3t` ⇒ `passwd=hiddenpass`
+    - `USER: user55 PASS: secr3t` ⇒ `USER: user55 PASS: hiddenpass`
+    - `U/N: user55 P/W: secr3t` ⇒ `U/N:hiddenuser P/W:hiddenpass`
+    - `U: user55 P: secr3t` ⇒ `U:hiddenuser P:hiddenpass`
+    - `U=user55 P=secr3t` ⇒ `U=hiddenuser P=hiddenpass`
+    - `u=user55 p=secr3t` ⇒ `u=hiddenuser p=hiddenpass`
+    - `u: user55 p: secr3t` ⇒ `u:hiddenuser p:hiddenpass`
+    - `L=user55 P=secr3t` ⇒ `L=hiddenuser P=hiddenpass`
 
 TODO
 ----
@@ -30,5 +53,3 @@ TODO
 - Hostnames
     - Dorky ISP-given ones that show IP addresses
     - `$HOST`
-- Passwords
-    - Things that match `/passw(or)?d\s?[=:]\s?\S*/i`
