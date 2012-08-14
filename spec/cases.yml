@@ -1,0 +1,33 @@
+Passwords:
+- filter: secr3t
+  from:
+  - 'password: secr3t'
+  - 'password:   secr3t'
+  - "password:\n\tsecr3t"
+  - "password: 'secr3t'"
+  - 'password:secr3t'
+  - 'passwd:secr3t'
+  - 'passwd: secr3t'
+  - password=secr3t
+  - passwd=secr3t
+  - password="secr3t"
+  - 'buzbuz password: secr3t bizbiz'
+  - 'buzbuz password: secr3t bizbiz another password: secr3t bazbaz'
+  - password=secr3t
+  - passwd=secr3t
+  - 'USER: user55 PASS: secr3t'
+  - 'U/N: user55 P/W: secr3t'
+  - 'U: user55 P: secr3t'
+  - U=user55 P=secr3t
+  - u=user55 p=secr3t
+  - 'u: user55 p: secr3t'
+  - L=user55 P=secr3t
+Addresses:
+- filter: 1.2.3.4
+  from:
+  - 1.2.3.4
+  - asdf 1.2.3.4 asdf
+  #- 1.2.3.4:22
+- passthru:
+  - 0.0.0.0
+  - 127.0.0.1
