@@ -32,17 +32,27 @@ Currently Works With
   - `"password=secr3t"` ⇒ `"password=hiddenpass"`
   - `"passwd=secr3t"` ⇒ `"passwd=hiddenpass"`
   - `"USER: user55 PASS: secr3t"` ⇒ `"USER: user55 PASS: hiddenpass"`
-  - `"U/N: user55 P/W: secr3t"` ⇒ `"U/N:hiddenuser P/W:hiddenpass"`
-  - `"U: user55 P: secr3t"` ⇒ `"U:hiddenuser P:hiddenpass"`
+  - `"U/N: user55 P/W: secr3t"` ⇒ `"U/N: hiddenuser P/W: hiddenpass"`
+  - `"U: user55 P: secr3t"` ⇒ `"U: hiddenuser P: hiddenpass"`
   - `"U=user55 P=secr3t"` ⇒ `"U=hiddenuser P=hiddenpass"`
   - `"u=user55 p=secr3t"` ⇒ `"u=hiddenuser p=hiddenpass"`
-  - `"u: user55 p: secr3t"` ⇒ `"u:hiddenuser p:hiddenpass"`
+  - `"u: user55 p: secr3t"` ⇒ `"u: hiddenuser p: hiddenpass"`
   - `"L=user55 P=secr3t"` ⇒ `"L=hiddenuser P=hiddenpass"`
 - Addresses
   - `"1.2.3.4"` ⇒ `"hiddenaddress"`
   - `"asdf 1.2.3.4 asdf"` ⇒ `"asdf hiddenaddress asdf"`
+  - `"1.2.3.4:22"` ⇒ `"hiddenaddress:22"`
+  - `"123.45.67.89"` ⇒ `"hiddenaddress"`
   - `"0.0.0.0"` _(unchanged)_
   - `"127.0.0.1"` _(unchanged)_
+- Capistrano's `deploy.rb`
+  - `"host_name: 'shouldhide'"` ⇒ `"host_name: caphidden"`
+  - `"host_name: \"shouldhide\""` ⇒ `"host_name: caphidden"`
+  - `":host_name => 'shouldhide'"` ⇒ `":host_name => caphidden"`
+  - `":host_name, 'shouldhide'"` ⇒ `":host_name, caphidden"`
+  - `":port => 'shouldhide'"` ⇒ `":port => caphidden"`
+  - `"deploy_to, 'shouldhide'"` ⇒ `"deploy_to, caphidden"`
+  - `"server 'shouldhide'"` ⇒ `"server caphidden"`
 
 
 TODO
@@ -56,3 +66,7 @@ TODO
 - Hostnames
     - Dorky ISP-given ones that show IP addresses
     - `$HOST`
+
+- Make distinct
+  - first.host.name ⇒ hiddenhostname1
+  - second.host.name ⇒ hiddenhostname2

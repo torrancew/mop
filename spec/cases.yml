@@ -27,7 +27,20 @@ Addresses:
   from:
   - 1.2.3.4
   - asdf 1.2.3.4 asdf
-  #- 1.2.3.4:22
+  - 1.2.3.4:22
+- filter: 123.45.67.89
+  from:
+  - 123.45.67.89
 - passthru:
   - 0.0.0.0
   - 127.0.0.1
+"Capistrano's `deploy.rb`":
+- filter: shouldhide
+  from:
+    - "host_name: 'shouldhide'"
+    - 'host_name: "shouldhide"'
+    - ":host_name => 'shouldhide'"
+    - ":host_name, 'shouldhide'"
+    - ":port => 'shouldhide'"
+    - deploy_to, 'shouldhide'
+    - server 'shouldhide'
