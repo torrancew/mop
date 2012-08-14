@@ -1,6 +1,8 @@
 fake passwd file: |
-  fakeuser:x:1001:1001::/home/fakeuser:/bin/zsh
-  fakeuser2:x:1002:1002::/home/fakeuser2:/bin/zsh
+  root:x:0:0:root:/root:/bin/zsh
+  cron:x:16:16:added by portage for cronbase:/var/spool/cron:/sbin/nologin
+  fakeuser:x:1000:1000::/home/fakeuser:/bin/zsh
+  fakeuser2:x:1001:1001::/home/fakeuser2:/bin/zsh
 fake hostname: gargantatron
 Passwords:
 - filter: secr3t
@@ -51,7 +53,10 @@ IPv6 Addresses (probably many patterns TODO on this one):
     - ":host_name, 'shouldhide'"
     - ":port => 'shouldhide'"
     - deploy_to, 'shouldhide'
-    - server 'shouldhide'
+    - server 'shouldhide', …
+- passthru:
+  - server without comma
+  - portage
 /etc/passwd having "fakeuser" and "fakeuser2":
 - filter: fakeuser
   from:
@@ -61,6 +66,9 @@ IPv6 Addresses (probably many patterns TODO on this one):
 - filter: fakeuser2
   from:
     - fakeuser2
+- passthru:
+  - cron
+  - root
 hostname being 'gargantatron':
 - filter: gargantatron
   from:

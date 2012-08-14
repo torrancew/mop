@@ -1,0 +1,3 @@
+#!/bin/zsh -e
+cmd=${@:-sudo cat /var/log/messages}
+vimdiff =(eval $cmd) =(eval $cmd | bin/mop)

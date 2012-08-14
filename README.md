@@ -51,12 +51,16 @@ Currently Works With
   - `":host_name, 'shouldhide'"` ⇒ `":host_name, caphidden"`
   - `":port => 'shouldhide'"` ⇒ `":port => caphidden"`
   - `"deploy_to, 'shouldhide'"` ⇒ `"deploy_to, caphidden"`
-  - `"server 'shouldhide'"` ⇒ `"server caphidden"`
+  - `"server 'shouldhide', …"` ⇒ `"server capserver …"`
+  - `"server without comma"` _(unchanged)_
+  - `"portage"` _(unchanged)_
 - /etc/passwd having "fakeuser" and "fakeuser2"
   - `"foo bar fakeuser baz"` ⇒ `"foo bar hiddenuser baz"`
   - `"~/fakeuser"` ⇒ `"~/hiddenuser"`
   - `"/home/fakeuser/.foo"` ⇒ `"/home/hiddenuser/.foo"`
   - `"fakeuser2"` ⇒ `"hiddenuser"`
+  - `"cron"` _(unchanged)_
+  - `"root"` _(unchanged)_
 - hostname being 'gargantatron'
   - `"gargantatron"` ⇒ `"hiddenhost"`
 
