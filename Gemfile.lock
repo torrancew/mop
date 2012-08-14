@@ -8,6 +8,9 @@ GEM
       thor (>= 0.14.6)
     guard-rspec (1.2.1)
       guard (>= 1.1)
+    jist (1.0.0)
+      json
+    json (1.7.4)
     libnotify (0.7.3)
     listen (0.4.7)
       rb-fchange (~> 0.0.5)
@@ -34,5 +37,6 @@ PLATFORMS
 DEPENDENCIES
   guard
   guard-rspec
+  jist
   libnotify
   rspec
