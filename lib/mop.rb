@@ -1,5 +1,7 @@
 class Mop
-  ADDRESSES = %r/((\d+\.){3}\d+)/
+  IPv4_ADDRESSES = %r/((\d+\.){3}\d+)/
+  HEXDIGIT = %r/[a-z0-9]/i
+  IPv6_ADDRESSES = %r/((#{HEXDIGIT}+:){5}#{HEXDIGIT}+)/
   EQUATE = %r/\s*[:=]?>?,?\s*/
   PASSWD = %r/passw?(or)?d?/i
   PASSWORD_EQUALS = %r/(#{PASSWD}#{EQUATE})\S+/
@@ -13,7 +15,8 @@ class Mop
   def self.wipe input
     cleanups = username_cleanups + [
       hostname_cleanup,
-      [ ADDRESSES, -> { check_address $1 } ],
+      [ IPv4_ADDRESSES, -> { check_address $1 } ],
+      [ IPv6_ADDRESSES, -> { 'aa:bb:cc:dd:ee:ff' } ],
       [ PASSWORD_EQUALS, -> { "#$1hiddenpass" } ],
       [ USERNAME_AND_PASSWORD, -> { "#$1hiddenuser#$2hiddenpass" } ],
       [ CAPISTRANO, -> { "#$1caphidden" } ],
@@ -34,7 +37,7 @@ class Mop
   def self.hostname_cleanup
     [ %r/\b#{find_hostname}\b/, -> { 'hiddenhost' } ]
   end
-  def self.find_hostname; ENV['HOST'] end
+  def self.find_hostname; `hostname`.chomp || 'weird, no hostname' end
 
   PASSTHRU_ADDRESSES = %w(127.0.0.1 0.0.0.0)
   def self.check_address addr

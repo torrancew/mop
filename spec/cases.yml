@@ -26,7 +26,7 @@ Passwords:
   - u=user55 p=secr3t
   - 'u: user55 p: secr3t'
   - L=user55 P=secr3t
-Addresses:
+IPv4 Addresses:
 - filter: 1.2.3.4
   from:
   - 1.2.3.4
@@ -38,6 +38,10 @@ Addresses:
 - passthru:
   - 0.0.0.0
   - 127.0.0.1
+IPv6 Addresses (probably many patterns TODO on this one):
+- filter: 21:43:6f:1a:f6:f6
+  from:
+    - 21:43:6f:1a:f6:f6
 "Capistrano's `deploy.rb`":
 - filter: shouldhide
   from:
