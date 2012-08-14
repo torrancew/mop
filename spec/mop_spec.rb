@@ -8,6 +8,8 @@ describe Mop do
   cases = YAML.load_file('spec/cases.yml')
   $passwd_contents = cases.delete 'fake passwd file'
   def Mop.read_etc_passwd; $passwd_contents end
+  $hostname = cases.delete 'fake hostname'
+  def Mop.find_hostname; $hostname end
   cases.each do |name, intentions|
     context name do
       doc.puts '- ' + name

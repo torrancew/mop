@@ -12,6 +12,7 @@ class Mop
 
   def self.wipe input
     cleanups = username_cleanups + [
+      hostname_cleanup,
       [ ADDRESSES, -> { check_address $1 } ],
       [ PASSWORD_EQUALS, -> { "#$1hiddenpass" } ],
       [ USERNAME_AND_PASSWORD, -> { "#$1hiddenuser#$2hiddenpass" } ],
@@ -28,9 +29,12 @@ class Mop
       [ %r/\b#{e}\b/, -> { 'hiddenuser' } ]
     end
   end
-  def self.read_etc_passwd
-    File.read '/etc/passwd'
+  def self.read_etc_passwd; File.read '/etc/passwd' end
+
+  def self.hostname_cleanup
+    [ %r/\b#{find_hostname}\b/, -> { 'hiddenhost' } ]
   end
+  def self.find_hostname; ENV['HOST'] end
 
   PASSTHRU_ADDRESSES = %w(127.0.0.1 0.0.0.0)
   def self.check_address addr

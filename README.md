@@ -58,6 +58,8 @@ Currently Works With
   - `"~/fakeuser"` ⇒ `"~/hiddenuser"`
   - `"/home/fakeuser/.foo"` ⇒ `"/home/hiddenuser/.foo"`
   - `"fakeuser2"` ⇒ `"hiddenuser"`
+- hostname being 'gargantatron'
+  - `"gargantatron"` ⇒ `"hiddenhost"`
 
 
 TODO
