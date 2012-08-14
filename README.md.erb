@@ -3,11 +3,8 @@ mop
 
 Make OK for Public - Hide usernames, passwords, hostnames, IPs, (what else), in preparation of a gist or other sharing? [Maturity: New]
 
-Usage
------
-
-Builds on top of ConradIrwin's `jist` gem, so that you can more safely gist
-files that have sensitive information.
+Caution
+-------
 
 Be aware that this is in its infancy, but even when fully-grown, it will never
 replace thinking. It's merely a tool to help you get a jumpstart on sanitizing
@@ -21,9 +18,9 @@ Currently Works With
 TODO
 ----
 
-- IPv6 Addresses
-- Hostnames
-    - Dorky ISP-given ones that show IP addresses
+- Add -j for ConradIrwin's `jist` gem
 - Make distinct (similar to an uglifier's symbol replacement)
   - first.host.name ⇒ hiddenhostname1
   - second.host.name ⇒ hiddenhostname2
+- Learn more about IPv6 Addresses
+- Dorky ISP-given hostnames that show IP addresses
