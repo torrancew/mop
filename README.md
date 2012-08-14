@@ -1,8 +1,7 @@
-sist
-====
+mop
+===
 
-Selective information sharing tool - Gist with hidden usernames,
-passwords, hostnames, IPs, (what else)? [Maturity: New]
+Make OK for Public - Hide usernames, passwords, hostnames, IPs, (what else), in preparation of a gist or other sharing? [Maturity: New]
 
 Usage
 -----

@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'stringio'
 require 'erb'
 
-describe Sist do
+describe Mop do
   doc = StringIO.new
   YAML.load_file('spec/cases.yml').each do |name, intentions|
     context name do
@@ -12,7 +12,7 @@ describe Sist do
         if intention.has_key? 'passthru'
           intention['passthru'].each do |already_clean|
             it "should leave '#{already_clean}' alone" do
-              Sist.sanitize(already_clean).should eq(already_clean)
+              Mop.wipe(already_clean).should eq(already_clean)
             end
             doc.puts "  - `#{already_clean.inspect}` _(unchanged)_"
           end
@@ -21,14 +21,14 @@ describe Sist do
           intention['from'].each do |dirty|
             it "should not modify the original" do
               orig = illicit.dup
-              Sist.sanitize illicit
+              Mop.wipe illicit
               illicit.should eq(orig)
             end
             it "should catch #{illicit} from #{dirty}" do
-              Sist.sanitize(dirty).should_not include(illicit)
+              Mop.wipe(dirty).should_not include(illicit)
             end
             doc.puts "  - `#{dirty.inspect}` ⇒ " +
-              "`#{Sist.sanitize(dirty).inspect}`"
+              "`#{Mop.wipe(dirty).inspect}`"
           end
         else
           fail "Unknown test case: #{intention.to_yaml}"

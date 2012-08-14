@@ -1,6 +1,6 @@
-class Sist
+class Mop
   PASSTHRU_ADDRESSES = %w(127.0.0.1 0.0.0.0)
-  def self.sanitize input
+  def self.wipe input
     result = input.dup
     [
       [ %r/(passw?(or)?d?\s*[=:]\s*)\S+/i, -> { "#$1hiddenpass" } ],
