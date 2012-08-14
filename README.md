@@ -39,10 +39,10 @@ Currently Works With
   - `"u: user55 p: secr3t"` ⇒ `"u: hiddenuser p: hiddenpass"`
   - `"L=user55 P=secr3t"` ⇒ `"L=hiddenuser P=hiddenpass"`
 - Addresses
-  - `"1.2.3.4"` ⇒ `"hiddenaddress"`
-  - `"asdf 1.2.3.4 asdf"` ⇒ `"asdf hiddenaddress asdf"`
-  - `"1.2.3.4:22"` ⇒ `"hiddenaddress:22"`
-  - `"123.45.67.89"` ⇒ `"hiddenaddress"`
+  - `"1.2.3.4"` ⇒ `"XX.YY.ZZ.AA"`
+  - `"asdf 1.2.3.4 asdf"` ⇒ `"asdf XX.YY.ZZ.AA asdf"`
+  - `"1.2.3.4:22"` ⇒ `"XX.YY.ZZ.AA:22"`
+  - `"123.45.67.89"` ⇒ `"XX.YY.ZZ.AA"`
   - `"0.0.0.0"` _(unchanged)_
   - `"127.0.0.1"` _(unchanged)_
 - Capistrano's `deploy.rb`
@@ -65,15 +65,9 @@ Currently Works With
 TODO
 ----
 
-- Usernames hidden
-    - Guess based on `/home/*`
-- IP Addresses
-    - IPv4
-    - IPv6
+- IPv6 Addresses
 - Hostnames
     - Dorky ISP-given ones that show IP addresses
-    - `$HOST`
-
-- Make distinct
+- Make distinct (similar to an uglifier's symbol replacement)
   - first.host.name ⇒ hiddenhostname1
   - second.host.name ⇒ hiddenhostname2

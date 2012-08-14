@@ -41,7 +41,7 @@ class Mop
     if PASSTHRU_ADDRESSES.include? addr
       addr
     else
-      'hiddenaddress'
+      'XX.YY.ZZ.AA'
     end
   end
 end
