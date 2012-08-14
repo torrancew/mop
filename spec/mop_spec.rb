@@ -5,7 +5,10 @@ require 'erb'
 
 describe Mop do
   doc = StringIO.new
-  YAML.load_file('spec/cases.yml').each do |name, intentions|
+  cases = YAML.load_file('spec/cases.yml')
+  $passwd_contents = cases.delete 'fake passwd file'
+  def Mop.read_etc_passwd; $passwd_contents end
+  cases.each do |name, intentions|
     context name do
       doc.puts '- ' + name
       intentions.each do |intention|

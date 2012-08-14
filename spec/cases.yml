@@ -1,3 +1,6 @@
+fake passwd file: |
+  fakeuser:x:1001:1001::/home/fakeuser:/bin/zsh
+  fakeuser2:x:1002:1002::/home/fakeuser2:/bin/zsh
 Passwords:
 - filter: secr3t
   from:
@@ -44,3 +47,12 @@ Addresses:
     - ":port => 'shouldhide'"
     - deploy_to, 'shouldhide'
     - server 'shouldhide'
+/etc/passwd having "fakeuser" and "fakeuser2":
+- filter: fakeuser
+  from:
+    - foo bar fakeuser baz
+    - ~/fakeuser
+    - /home/fakeuser/.foo
+- filter: fakeuser2
+  from:
+    - fakeuser2

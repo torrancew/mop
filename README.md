@@ -53,6 +53,11 @@ Currently Works With
   - `":port => 'shouldhide'"` ⇒ `":port => caphidden"`
   - `"deploy_to, 'shouldhide'"` ⇒ `"deploy_to, caphidden"`
   - `"server 'shouldhide'"` ⇒ `"server caphidden"`
+- /etc/passwd having "fakeuser" and "fakeuser2"
+  - `"foo bar fakeuser baz"` ⇒ `"foo bar hiddenuser baz"`
+  - `"~/fakeuser"` ⇒ `"~/hiddenuser"`
+  - `"/home/fakeuser/.foo"` ⇒ `"/home/hiddenuser/.foo"`
+  - `"fakeuser2"` ⇒ `"hiddenuser"`
 
 
 TODO

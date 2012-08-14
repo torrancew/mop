@@ -11,14 +11,25 @@ class Mop
   CAPISTRANO = %r/(#{CAPISTRANO_KEYWORDS}|#{CAPISTRANO_SERVER})\S+/
 
   def self.wipe input
-    [
+    cleanups = username_cleanups + [
       [ ADDRESSES, -> { check_address $1 } ],
       [ PASSWORD_EQUALS, -> { "#$1hiddenpass" } ],
       [ USERNAME_AND_PASSWORD, -> { "#$1hiddenuser#$2hiddenpass" } ],
       [ CAPISTRANO, -> { "#$1caphidden" } ],
-    ].inject input do |result, xform|
+    ]
+    cleanups.inject input do |result, xform|
       result.gsub xform[0] do xform[1].call end
     end
+  end
+
+  def self.username_cleanups
+    users = read_etc_passwd.split(/\n/).map do |e| e.split(':')[0] end
+    users.map do |e|
+      [ %r/\b#{e}\b/, -> { 'hiddenuser' } ]
+    end
+  end
+  def self.read_etc_passwd
+    File.read '/etc/passwd'
   end
 
   PASSTHRU_ADDRESSES = %w(127.0.0.1 0.0.0.0)
