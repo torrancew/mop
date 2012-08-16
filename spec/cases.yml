@@ -5,7 +5,7 @@ fake passwd file: |
   fakeuser2:x:1001:1001::/home/fakeuser2:/bin/zsh
 fake hostname: gargantatron
 Passwords:
-- filter: secr3t
+- filter: [ secr3t, secr4t ]
   from:
   - 'password: secr3t'
   - 'password:   secr3t'
@@ -18,7 +18,7 @@ Passwords:
   - passwd=secr3t
   - password="secr3t"
   - 'buzbuz password: secr3t bizbiz'
-  - 'buzbuz password: secr3t bizbiz another password: secr3t bazbaz'
+  - 'buzbuz password: secr3t bizbiz another password: secr4t bazbaz'
   - password=secr3t
   - passwd=secr3t
   - 'USER: user55 PASS: secr3t'
@@ -28,6 +28,11 @@ Passwords:
   - u=user55 p=secr3t
   - 'u: user55 p: secr3t'
   - L=user55 P=secr3t
+Users:
+- filter: user55
+  from:
+  - 'user: user55'
+  - 'User=user55'
 IPv4 Addresses:
 - filter: 1.2.3.4
   from:
@@ -54,6 +59,8 @@ IPv6 Addresses (probably many patterns TODO on this one):
     - ":port => 'shouldhide'"
     - deploy_to, 'shouldhide'
     - server 'shouldhide', …
+    - 'set :application, "shouldhide"'
+    - 'set :user, "shouldhide"'
 - passthru:
   - server without comma
   - portage
@@ -73,3 +80,17 @@ hostname being 'gargantatron':
 - filter: gargantatron
   from:
     - gargantatron
+Git repos:
+- filter: [ username, reponame, someotherhost ]
+  from:
+  - git@github.com/username/reponame.git
+  - git@github.com/username/reponame
+  - https://github.com/username/reponame
+  - http://github.com/username/reponame
+  - git://github.com/username/reponame
+  - http://someotherhost.net/reponame.git
+SSH:
+- filter: [ user55, secrethost, path, to, reponame ]
+  from:
+  - ssh://user55@secrethost/path/to/reponame.git/
+# TODO     [user@]host.xz:path/to/repo.git/

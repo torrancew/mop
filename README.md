@@ -25,16 +25,19 @@ Currently Works With
   - `"passwd=secr3t"` ⇒ `"passwd=hiddenpass"`
   - `"password=\"secr3t\""` ⇒ `"password=hiddenpass"`
   - `"buzbuz password: secr3t bizbiz"` ⇒ `"buzbuz password: hiddenpass bizbiz"`
-  - `"buzbuz password: secr3t bizbiz another password: secr3t bazbaz"` ⇒ `"buzbuz password: hiddenpass bizbiz another password: hiddenpass bazbaz"`
+  - `"buzbuz password: secr3t bizbiz another password: secr4t bazbaz"` ⇒ `"buzbuz password: hiddenpass bizbiz another password: hiddenpass bazbaz"`
   - `"password=secr3t"` ⇒ `"password=hiddenpass"`
   - `"passwd=secr3t"` ⇒ `"passwd=hiddenpass"`
-  - `"USER: user55 PASS: secr3t"` ⇒ `"USER: user55 PASS: hiddenpass"`
+  - `"USER: user55 PASS: secr3t"` ⇒ `"USER: hiddenuser PASS: hiddenpass"`
   - `"U/N: user55 P/W: secr3t"` ⇒ `"U/N: hiddenuser P/W: hiddenpass"`
   - `"U: user55 P: secr3t"` ⇒ `"U: hiddenuser P: hiddenpass"`
   - `"U=user55 P=secr3t"` ⇒ `"U=hiddenuser P=hiddenpass"`
   - `"u=user55 p=secr3t"` ⇒ `"u=hiddenuser p=hiddenpass"`
   - `"u: user55 p: secr3t"` ⇒ `"u: hiddenuser p: hiddenpass"`
   - `"L=user55 P=secr3t"` ⇒ `"L=hiddenuser P=hiddenpass"`
+- Users
+  - `"user: user55"` ⇒ `"user: hiddenuser"`
+  - `"User=user55"` ⇒ `"User=hiddenuser"`
 - IPv4 Addresses
   - `"1.2.3.4"` ⇒ `"XX.YY.ZZ.AA"`
   - `"asdf 1.2.3.4 asdf"` ⇒ `"asdf XX.YY.ZZ.AA asdf"`
@@ -52,6 +55,8 @@ Currently Works With
   - `":port => 'shouldhide'"` ⇒ `":port => caphidden"`
   - `"deploy_to, 'shouldhide'"` ⇒ `"deploy_to, caphidden"`
   - `"server 'shouldhide', …"` ⇒ `"server capserver …"`
+  - `"set :application, \"shouldhide\""` ⇒ `"set :application, caphidden"`
+  - `"set :user, \"shouldhide\""` ⇒ `"set :user, hiddenuser"`
   - `"server without comma"` _(unchanged)_
   - `"portage"` _(unchanged)_
 - /etc/passwd having "fakeuser" and "fakeuser2"
@@ -63,6 +68,15 @@ Currently Works With
   - `"root"` _(unchanged)_
 - hostname being 'gargantatron'
   - `"gargantatron"` ⇒ `"hiddenhost"`
+- Git repos
+  - `"git@github.com/username/reponame.git"` ⇒ `"git@github.com/hiddenrepo"`
+  - `"git@github.com/username/reponame"` ⇒ `"git@github.com/hiddenrepo"`
+  - `"https://github.com/username/reponame"` ⇒ `"https://github.com/hiddenrepo"`
+  - `"http://github.com/username/reponame"` ⇒ `"http://github.com/hiddenrepo"`
+  - `"git://github.com/username/reponame"` ⇒ `"git://github.com/hiddenrepo"`
+  - `"http://someotherhost.net/reponame.git"` ⇒ `"http://hiddenrepo"`
+- SSH
+  - `"ssh://user55@secrethost/path/to/reponame.git/"` ⇒ `"ssh://hiddensshurl"`
 
 
 TODO

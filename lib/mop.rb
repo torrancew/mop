@@ -3,12 +3,15 @@ class Mop
   HEXDIGIT = %r/[a-z0-9]/i
   IPv6_ADDRESSES = %r/((#{HEXDIGIT}+:){5}#{HEXDIGIT}+)/
   EQUATE = %r/\s*(?:=>|[:=]|,)\s*/
-  PASSWD = %r/passw?(or)?d?/i
-  PASSWORD_EQUALS = %r/(#{PASSWD}#{EQUATE})\S+/
+  USER_EQUALS = %r/(user#{EQUATE})\S+/i
+  PASSWORD_EQUALS = %r/(passw?(or)?d?#{EQUATE})\S+/i
   UN = %r[\b(?:[ul]\/?n?)\b]i
   PW = %r[\b(?:p\/?w?)\b]i
   USERNAME_AND_PASSWORD = %r/(#{UN}#{EQUATE})\S+(\s*#{PW}#{EQUATE})\S+/
-  CAPISTRANO_KEYWORDS = %r/((?:host_name|port|deploy_to)(?:#{EQUATE}))\S+/
+  GITHUB_URL = %r[((?:git@|(?:https?|git)://)github.com/)[^/]+/.+(\.git)?]i
+  GIT_URL = %r[(ssh|git|https?|ftp|rsync)://\S+(\.git)]
+  SSH_URL = %r[(ssh://)\S+]i
+  CAPISTRANO_KEYWORDS = %r/((?:host_name|port|deploy_to|application)(?:#{EQUATE}))\S+/
   CAPISTRANO_SERVER = %r/(\bserver\s+)\S+,/
 
   def self.wipe input
@@ -16,8 +19,12 @@ class Mop
       hostname_cleanup,
       [ IPv4_ADDRESSES, -> { check_address $1 } ],
       [ IPv6_ADDRESSES, -> { 'aa:bb:cc:dd:ee:ff' } ],
+      [ USER_EQUALS, -> { "#$1hiddenuser" } ],
       [ PASSWORD_EQUALS, -> { "#$1hiddenpass" } ],
       [ USERNAME_AND_PASSWORD, -> { "#$1hiddenuser#$2hiddenpass" } ],
+      [ GITHUB_URL, -> { "#$1hiddenrepo#$2" } ],
+      [ GIT_URL, -> { "#$1://hiddenrepo" } ],
+      [ SSH_URL, -> { "#$1hiddensshurl" } ],
       [ CAPISTRANO_KEYWORDS, -> { "#$1caphidden" } ],
       [ CAPISTRANO_SERVER, -> { "#$1capserver" } ],
     ]

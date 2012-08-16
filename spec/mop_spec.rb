@@ -23,14 +23,18 @@ describe Mop do
           end
         elsif intention.has_key? 'filter' and intention.has_key? 'from'
           illicit = intention['filter']
+          illicit = [illicit] unless illicit.is_a? Array
           intention['from'].each do |dirty|
             it "should not modify the original" do
-              orig = illicit.dup
-              Mop.wipe illicit
-              illicit.should eq(orig)
+              orig = dirty.dup
+              Mop.wipe dirty
+              dirty.should eq(orig)
             end
             it "should catch #{illicit} from #{dirty}" do
-              Mop.wipe(dirty).should_not include(illicit)
+              clean = Mop.wipe dirty
+              illicit.each do |e|
+                clean.should_not include(e)
+              end
             end
             doc.puts "  - `#{dirty.inspect}` ⇒ " +
               "`#{Mop.wipe(dirty).inspect}`"
